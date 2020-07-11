@@ -21,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
     Button btnAdd;
     EditText etItem;
     RecyclerView rvItems;
+    ItemsAdapter itemsAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,12 +33,23 @@ public class MainActivity extends AppCompatActivity {
         rvItems = findViewById(R.id.rvItems);
 
 
+
         items = new ArrayList<>();
         items.add("Buy milk");
         items.add("Go to the gym");
         items.add("Study");
 
-        final ItemsAdapter itemsAdapter = new ItemsAdapter(items);
+        ItemsAdapter.OnLongClickListener onLongClickListener =  new ItemsAdapter.OnLongClickListener(){
+            @Override
+            public void onItemLongClicked(int position) {
+                    items.remove(position);
+                    itemsAdapter.notifyItemRemoved(position);
+                Toast.makeText(getApplicationContext(), "Item was removed", Toast.LENGTH_SHORT).show();
+
+            }
+        };
+
+        itemsAdapter = new ItemsAdapter(items, onLongClickListener);
         rvItems.setAdapter(itemsAdapter);
         rvItems.setLayoutManager(new LinearLayoutManager(this));
 
