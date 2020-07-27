@@ -6,6 +6,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
@@ -58,6 +59,8 @@ public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ViewHolder>{
         return items.size();
     }
 
+
+
     //Container to provide easy access to views that represent each row of the list
     class ViewHolder extends RecyclerView.ViewHolder{
 
@@ -83,6 +86,10 @@ public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ViewHolder>{
                     return true;
                 }
             });
+
+
+
+
 
         }
     }
